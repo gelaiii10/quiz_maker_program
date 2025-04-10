@@ -14,3 +14,5 @@ def main():
     print("welcome to the question collector")
     print("you can create multiple questions with four answer options each")
     print("type 'exit' at any time to quit the program")
+
+    questions_data = []  # list to store all questions and answers
