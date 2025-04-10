@@ -1,5 +1,4 @@
 import os
-import json
 
 def get_valid_answer(prompt):
     """Function to get a valid answer option from the user."""
@@ -15,14 +14,6 @@ def main():
     print("You can create multiple questions with four answer options each.")
     print("Type 'exit' at any time to quit the program.\n")
     
-    # print the current working directory
-    print("Current working directory:", os.getcwd())
-
-    # dictionary to manage file paths
-    file_paths = {
-        "questions": "questions.json"  # path for the questions file
-    }
-
     questions_data = []  # list to store all questions and answers
 
     while True:
@@ -51,17 +42,30 @@ def main():
         
         print("Question added successfully!\n")
 
-    # write the collected data to a JSON file
+    # write the collected data to the Desktop
     try:
-        with open(file_paths["questions"], "w") as file:
-            json.dump(questions_data, file, indent=4)  # write data in JSON format
-        print(f"Questions saved to {file_paths['questions']} successfully!")
+        file_path = "questions.txt"
+
+        print(f"File saved to: {os.path.abspath(file_path)}")
+        
+        with open(file_path, "w") as file:
+            for entry in questions_data:
+                file.write(f"Question: {entry['question']}\n")
+                for option, answer in entry['answers'].items():
+                    file.write(f"  Option {option}: {answer}\n")
+                file.write(f"  Correct Answer: {entry['correct_answer']}\n\n")
+        
+        print(f"Questions saved to: {file_path}")
+        os.system(f'notepad "{file_path}"')  # open file in Notepad (Windows only)
+
+        print("Questions saved successfully!")
+
     except Exception as e:
         print(f"An error occurred while writing to the file: {e}")
 
     # summary of all questions added
-    print("Thank you for using the Question Collector!")
-    print("Here is a summary of the questions you added:")
+    print("\nThank you for using the Question Collector!")
+    print("Here is a summary of the questions you added:\n")
     for entry in questions_data:
         print(f"Question: {entry['question']}")
         for option, answer in entry['answers'].items():
