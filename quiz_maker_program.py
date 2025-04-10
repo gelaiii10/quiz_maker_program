@@ -32,3 +32,11 @@ def main():
         # ask for the correct answer
         print("enter the correct answer (a, b, c, or d):")
         correct_answer = get_valid_answer("your choice: ")
+
+        # store the question and answers in a dictionary
+        question_entry = {
+            "question": question,
+            "answers": answers,
+            "correct_answer": correct_answer
+        }
+        questions_data.append(question_entry)  # add to the list of questions
