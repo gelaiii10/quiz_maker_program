@@ -22,3 +22,9 @@ def main():
         question = input("enter your question (or type 'exit' to quit): ")
         if question.lower() == 'exit':
             break 
+
+    # ask for the possible answers
+        answers = {}
+        for option in ['a', 'b', 'c', 'd']:
+            answer = input(option)
+            answers[option] = answer
