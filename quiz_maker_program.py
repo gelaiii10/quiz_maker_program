@@ -40,3 +40,11 @@ def main():
             "correct_answer": correct_answer
         }
         questions_data.append(question_entry)  # add to the list of questions
+
+        # write the collected data to a text file
+        with open("questions.txt", "a") as file:
+            file.write(f"Question: {question}\n")
+            for option, answer in answers.items():
+                file.write(f"Option {option}: {answer}\n")
+            file.write(f"Correct Answer: {correct_answer}\n")
+            file.write("\n")  # add a newline for better readability
