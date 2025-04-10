@@ -16,3 +16,9 @@ def main():
     print("type 'exit' at any time to quit the program")
 
     questions_data = []  # list to store all questions and answers
+
+    while True:
+        # ask for the question
+        question = input("enter your question (or type 'exit' to quit): ")
+        if question.lower() == 'exit':
+            break 
