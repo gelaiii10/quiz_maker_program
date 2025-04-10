@@ -8,3 +8,9 @@ def get_valid_answer(prompt):
         else:
             # if the input is invalid, it will print an error message and prompt the user to enter again.
             print("Invalid input. Please enter a valid option (a, b, c, or d)") 
+
+def main(): 
+    # initial messages
+    print("welcome to the question collector")
+    print("you can create multiple questions with four answer options each")
+    print("type 'exit' at any time to quit the program")
