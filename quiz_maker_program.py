@@ -48,3 +48,13 @@ def main():
                 file.write(f"Option {option}: {answer}\n")
             file.write(f"Correct Answer: {correct_answer}\n")
             file.write("\n")  # add a newline for better readability
+
+            print("question added successfully!\n")
+
+         # summary of all questions added
+    
+    for entry in questions_data:
+        print(f"question: {entry['question']}")
+        for option, answer in entry['answers'].items():
+            print(f"  Option {option}: {answer}")
+        print(f"  correct Answer: {entry['correct_answer']}\n")
