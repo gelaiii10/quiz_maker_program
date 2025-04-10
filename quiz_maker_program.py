@@ -1,3 +1,5 @@
+import os
+
 def get_valid_answer(prompt):
     # docstring to explain the purpose of the function
     """Function to get a valid answer option from the user"""   
@@ -14,6 +16,9 @@ def main():
     print("welcome to the question collector")
     print("you can create multiple questions with four answer options each")
     print("type 'exit' at any time to quit the program")
+
+    # print the current working directory
+    print("Current working directory:", os.getcwd())
 
     questions_data = []  # list to store all questions and answers
 
@@ -42,13 +47,15 @@ def main():
         questions_data.append(question_entry)  # add to the list of questions
 
         # write the collected data to a text file
-        with open("questions.txt", "a") as file:
-            file.write(f"Question: {question}\n")
-            for option, answer in answers.items():
-                file.write(f"Option {option}: {answer}\n")
-            file.write(f"Correct Answer: {correct_answer}\n")
-            file.write("\n")  # add a newline for better readability
-
+        try:
+            with open("questions.txt", "a") as file:
+                file.write(f"Question: {question}\n")
+                for option, answer in answers.items():
+                    file.write(f"Option {option}: {answer}\n")
+                file.write(f"Correct Answer: {correct_answer}\n")
+                file.write("\n")  # Add a newline for better readability
+        except Exception as e:
+            print(f"An error occurred while writing to the file: {e}")
             print("question added successfully!\n")
 
          # summary of all questions added
