@@ -28,3 +28,7 @@ def main():
         for option in ['a', 'b', 'c', 'd']:
             answer = input(option)
             answers[option] = answer
+
+        # ask for the correct answer
+        print("enter the correct answer (a, b, c, or d):")
+        correct_answer = get_valid_answer("your choice: ")
