@@ -1,4 +1,5 @@
 import os
+import json
 
 def get_valid_answer(prompt):
     # docstring to explain the purpose of the function
@@ -48,15 +49,11 @@ def main():
 
         # write the collected data to a text file
         try:
-            with open("questions.txt", "a") as file:
-                file.write(f"Question: {question}\n")
-                for option, answer in answers.items():
-                    file.write(f"Option {option}: {answer}\n")
-                file.write(f"Correct Answer: {correct_answer}\n")
-                file.write("\n")  # Add a newline for better readability
+            with open("questions.json", "w") as file:
+                json.dump(questions_data, file, indent=4)  # Write data in JSON format
+            print("Questions saved to questions.json successfully!")
         except Exception as e:
             print(f"An error occurred while writing to the file: {e}")
-            print("question added successfully!\n")
 
          # summary of all questions added
     
