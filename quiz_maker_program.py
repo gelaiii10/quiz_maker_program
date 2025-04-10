@@ -2,43 +2,45 @@ import os
 import json
 
 def get_valid_answer(prompt):
-    # docstring to explain the purpose of the function
-    """Function to get a valid answer option from the user"""   
-    while True: # while loop to continue collecting questions and answers until the user types 'exit'
+    """Function to get a valid answer option from the user."""
+    while True:
         answer = input(prompt).lower()
         if answer in ['a', 'b', 'c', 'd']:
             return answer
         else:
-            # if the input is invalid, it will print an error message and prompt the user to enter again.
-            print("Invalid input. Please enter a valid option (a, b, c, or d)") 
+            print("Invalid input. Please enter a valid option (a, b, c, or d).")
 
-def main(): 
-    # initial messages
-    print("welcome to the question collector")
-    print("you can create multiple questions with four answer options each")
-    print("type 'exit' at any time to quit the program")
-
+def main():
+    print("Welcome to the Question Collector!")
+    print("You can create multiple questions with four answer options each.")
+    print("Type 'exit' at any time to quit the program.\n")
+    
     # print the current working directory
     print("Current working directory:", os.getcwd())
+
+    # dictionary to manage file paths
+    file_paths = {
+        "questions": "questions.json"  # path for the questions file
+    }
 
     questions_data = []  # list to store all questions and answers
 
     while True:
         # ask for the question
-        question = input("enter your question (or type 'exit' to quit): ")
+        question = input("Please enter your question (or type 'exit' to quit): ")
         if question.lower() == 'exit':
-            break 
-
-    # ask for the possible answers
+            break
+        
+        # ask for the possible answers
         answers = {}
         for option in ['a', 'b', 'c', 'd']:
-            answer = input(option)
+            answer = input(f"Please enter answer option {option}: ")
             answers[option] = answer
-
+        
         # ask for the correct answer
-        print("enter the correct answer (a, b, c, or d):")
-        correct_answer = get_valid_answer("your choice: ")
-
+        print("Please enter the correct answer (a, b, c, or d):")
+        correct_answer = get_valid_answer("Your choice: ")
+        
         # store the question and answers in a dictionary
         question_entry = {
             "question": question,
@@ -46,19 +48,25 @@ def main():
             "correct_answer": correct_answer
         }
         questions_data.append(question_entry)  # add to the list of questions
+        
+        print("Question added successfully!\n")
 
-        # write the collected data to a text file
-        try:
-            with open("questions.json", "w") as file:
-                json.dump(questions_data, file, indent=4)  # Write data in JSON format
-            print("Questions saved to questions.json successfully!")
-        except Exception as e:
-            print(f"An error occurred while writing to the file: {e}")
+    # write the collected data to a JSON file
+    try:
+        with open(file_paths["questions"], "w") as file:
+            json.dump(questions_data, file, indent=4)  # write data in JSON format
+        print(f"Questions saved to {file_paths['questions']} successfully!")
+    except Exception as e:
+        print(f"An error occurred while writing to the file: {e}")
 
-         # summary of all questions added
-    
+    # summary of all questions added
+    print("Thank you for using the Question Collector!")
+    print("Here is a summary of the questions you added:")
     for entry in questions_data:
-        print(f"question: {entry['question']}")
+        print(f"Question: {entry['question']}")
         for option, answer in entry['answers'].items():
             print(f"  Option {option}: {answer}")
-        print(f"  correct Answer: {entry['correct_answer']}\n")
+        print(f"  Correct Answer: {entry['correct_answer']}\n")
+
+if __name__ == "__main__":
+    main()
