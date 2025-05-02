@@ -17,3 +17,9 @@ def quiz_user(questions): # this function takes a list of questions as input
     print("questions: " + question)  # prints the selected questions and promts the user for their answer
     # check if the user answer matches the correct answer
     user_answer = input("your answer: ")
+
+# condition to check if the user answer is correct or not
+    if user_answer.strip().lower() == correct_answer.lower():
+        print("correct!")
+    else:
+        print(f"incorrect! the correct answer is: {correct_answer}")
