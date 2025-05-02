@@ -15,3 +15,5 @@ def quiz_user(questions): # this function takes a list of questions as input
     # randomly selects a question and its corresponding correct answer from the list
     question, correct_answer = random.choice(questions)
     print("questions: " + question)  # prints the selected questions and promts the user for their answer
+    # check if the user answer matches the correct answer
+    user_answer = input("your answer: ")
