@@ -4,4 +4,7 @@ import random # import module
 def load_questions(filename):
     questions = [] # initialize and empty list
     with open(filename, "r") as file: # open the specified file for reaing
-        
+        # each line in the file, it splits the line into a question and answer using the semicolon as a delimeter
+        for line in file:
+            question, answer = line.strip().split(";")
+            questions.append((question, answer))  # it appends the tuple to the list
