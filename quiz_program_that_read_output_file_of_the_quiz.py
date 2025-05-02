@@ -23,3 +23,7 @@ def quiz_user(questions): # this function takes a list of questions as input
         print("correct!")
     else:
         print(f"incorrect! the correct answer is: {correct_answer}")
+
+def main(): # this function is the entry point of the program
+    question = load_questions("quiz_program.txt") # to get the list of the questions from the list
+    quiz_user(question) # to start the quiz
