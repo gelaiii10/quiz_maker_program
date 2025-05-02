@@ -8,3 +8,4 @@ def load_questions(filename):
         for line in file:
             question, answer = line.strip().split(";")
             questions.append((question, answer))  # it appends the tuple to the list
+            return questions  # close the file and returns the list of the questions
